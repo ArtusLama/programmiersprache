@@ -2,6 +2,7 @@ import sys
 from token import TokenType
 
 from Parser import *
+from emitter import Emitter
 from lexer import *
 
 
@@ -16,9 +17,11 @@ def compile_file(path: str):
         code = file.read()
 
     lexer = Lexer(code)
-    parser = Parser(lexer)
+    emitter = Emitter("out.c")
+    parser = Parser(lexer, emitter)
 
     parser.program()
+    emitter.writeFile()
     print("FINISCH!!!")
             
 
