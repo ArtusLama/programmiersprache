@@ -1,7 +1,8 @@
 import sys
 from token import TokenType
 
-from lexer import Lexer
+from Parser import *
+from lexer import *
 
 
 
@@ -9,20 +10,16 @@ from lexer import Lexer
 
 def compile_file(path: str):
     print("start compiling")
+
+
     with open(path) as file:
-        for line in file:
+        code = file.read()
 
-            lexer = Lexer(line)
-            #lexer = Lexer("int main<str argv> {")
+    lexer = Lexer(code)
+    parser = Parser(lexer)
 
-            token = lexer.getToken()
-            while token.kind != TokenType.EOF:
-                if token.kind != TokenType.NEWLINE:
-                    print(token.kind)
-                token = lexer.getToken()
-
-            # while lexer.peek() != "\0":
-            #     lexer.nextChar()
+    parser.program()
+    print("FINISCH!!!")
             
 
 

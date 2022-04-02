@@ -21,8 +21,9 @@ class TokenType(enum.Enum):
 
         VAR_TYPE_INT = [10, "int"]
         VAR_TYPE_FLOAT = [11, "float"]
-        VAR_TPYE_STRING = [12, "str"]
+        VAR_TYPE_STRING = [12, "str"]
         
+        FUNC_NAME = 13
 
 
         BRACKET_OPEN = 51
@@ -31,8 +32,9 @@ class TokenType(enum.Enum):
         #keywords
         PRINT = [101, "print"]
         IF = [102, "if"]
-        ELIF = [203, "elif"]
-        ELSE = 204
+        ELIF = [103, "elif"]
+        RETURN = [104, "return"]
+        ELSE = 105
 
 
         #operators

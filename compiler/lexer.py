@@ -1,5 +1,5 @@
 
-from keyword import iskeyword
+
 import sys
 from token import Token, TokenType
 #from compiler.token import TokenType
@@ -12,6 +12,9 @@ class Lexer:
         
         self.curChar = ""
         self.curPos = -1
+
+        self.lastToken = None
+
         self.nextChar()
 
 
@@ -164,11 +167,28 @@ class Lexer:
                         isKeyword = True
                         break
             
+            # int test<> {}
+            # int x = 10
+
             if not isKeyword:
-                token = Token(tokenText, TokenType.VAR_NAME)
+                
+                types = [TokenType.VAR_TYPE_INT, TokenType.VAR_TYPE_FLOAT, TokenType.VAR_TYPE_STRING]
+                #types = [ x for x in range(TokenType.VAR_TYPE_INT.value[0], TokenType.VAR_TYPE_FLOAT.value[0])]
+                # print(TokenType.VAR_TYPE_INT.value[0])
+                # print(TokenType.VAR_TYPE_STRING.value[0])
+                # print(self.lastToken.kind.value[0])
+                # print(self.peek())
+                print(f"{self.lastToken.kind=}")
+                if self.lastToken in types and self.peek() == "<":
+                    token = Token(tokenText, TokenType.FUNC_NAME)
+                else:
+                    token = Token(tokenText, TokenType.VAR_NAME)
 
         else:
             self.error(f"Unknown token '{self.curChar}'")
         
         self.nextChar()
+        if token.kind != TokenType.NEWLINE: print(token.kind)
+
+        self.lastToken = token
         return token

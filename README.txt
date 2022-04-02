@@ -50,7 +50,7 @@ read <"input: ">    INPUT
 
 str readFile<str file> {
     ? <read> {
-        ret file
+        return file
     } ? <> throw "no permissions"
 }
 
@@ -74,5 +74,5 @@ GRAMMAAAAARRRRR
 
 
 print <"Hello World">   (PRINT | LESS | STRING/VARIABLE | GREATER)
-<"Hello"> print
-
+int x = 10              (VAR_TYPE | VAR_NAME | EAQUALS | TYPE)
+                            |--------- same types ---------|
