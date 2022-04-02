@@ -174,12 +174,12 @@ class Lexer:
                 
                 types = [TokenType.VAR_TYPE_INT, TokenType.VAR_TYPE_FLOAT, TokenType.VAR_TYPE_STRING]
                 #types = [ x for x in range(TokenType.VAR_TYPE_INT.value[0], TokenType.VAR_TYPE_FLOAT.value[0])]
-                # print(TokenType.VAR_TYPE_INT.value[0])
-                # print(TokenType.VAR_TYPE_STRING.value[0])
-                # print(self.lastToken.kind.value[0])
-                # print(self.peek())
-                print(f"{self.lastToken.kind=}")
-                if self.lastToken in types and self.peek() == "<":
+                #print(f"{self.lastToken.kind=}")
+                #print(f"{self.peek()=}")
+                #print(f"{self.curChar=}")
+                #print(f"{self.lastToken.kind in types=}")
+                #print(f"{self.curChar == '<' =}")
+                if self.lastToken.kind in types and self.curChar == "<":
                     token = Token(tokenText, TokenType.FUNC_NAME)
                 else:
                     token = Token(tokenText, TokenType.VAR_NAME)
