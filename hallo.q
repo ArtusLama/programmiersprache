@@ -16,18 +16,11 @@
 #int test = 10
 #print <"Hello World">
 
-#int add<int x, int y> {
-#    return x + y
-#}
-#<x>
-
-
-
-#x = 5 * 10
-
-
-
-if <10 == 10>{
-    print <"TEN">
+int add<int x, int y> {
+    return x + y
 }
-
+#<x>
+#int x = 5 * 10
+#if <10 == 10>{
+#    print <"TEN">
+#}

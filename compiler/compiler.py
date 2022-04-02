@@ -1,7 +1,8 @@
+#!/usr/bin/env python3
 import sys
 from token import TokenType
 
-from Parser import *
+from parser import *
 from lexer import *
 
 
