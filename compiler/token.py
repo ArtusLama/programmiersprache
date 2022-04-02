@@ -1,6 +1,8 @@
 
 
-from lib2to3.pgen2.token import INDENT, STRING
+
+
+import enum
 
 
 class Token:

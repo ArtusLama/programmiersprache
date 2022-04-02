@@ -1,6 +1,6 @@
 
 import sys
-from compiler.token import Token, TokenType
+from token import Token, TokenType
 
 
 class Lexer:
@@ -15,7 +15,7 @@ class Lexer:
 
 
     def error(self, message):
-        sys.exit("[LEXING ERROR]\n-> " + message)
+        sys.exit("\n[LEXING ERROR]\n-> " + message)
 
 
     
@@ -26,7 +26,7 @@ class Lexer:
         else:
             self.curChar = self.code[self.curPos]
 
-        print(self.curChar)
+        
 
 
     def peek(self):
@@ -35,8 +35,14 @@ class Lexer:
         return self.code[self.curPos + 1]
 
 
+    def skipWhitespace(self):
+        while self.curChar == " " or self.curChar == "\t" or self.curChar == "\r":
+            self.nextChar()
+
     
     def getToken(self):
+        self.skipWhitespace()
+        
         token = None
 
         # MATH OPERATORS
@@ -60,7 +66,7 @@ class Lexer:
 
 
         else:
-            self.error(f"Unknown token '{self.curChar}'!")
+            self.error(f"Unknown token '{self.curChar}'")
 
         self.nextChar()
         return token

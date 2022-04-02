@@ -1,4 +1,5 @@
 import sys
+from token import TokenType
 
 from lexer import Lexer
 
@@ -13,8 +14,14 @@ def compile_file(path: str):
 
             lexer = Lexer(line)
             #lexer = Lexer("int main<str argv> {")
-            while lexer.peek() != "\0":
-                lexer.nextChar()
+
+            token = lexer.getToken()
+            while token.kind != TokenType.EOF:
+                print(token.kind)
+                token = lexer.getToken()
+
+            # while lexer.peek() != "\0":
+            #     lexer.nextChar()
 
 
 
