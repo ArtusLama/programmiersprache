@@ -3,6 +3,7 @@
 
 
 import enum
+from lib2to3.pgen2.token import GREATEREQUAL, LESSEQUAL
 
 
 class Token:
@@ -26,8 +27,18 @@ class TokenType(enum.Enum):
         PRINT = 101
 
         #operators
-        EQ = 201
-        PLUS = 202
-        MINUS = 203
-        MULTIPLY = 204
-        DIVISION = 205
+        PLUS = 201
+        MINUS = 202
+        MULTIPLY = 203
+        DIVISION = 204
+
+        EQ = 205             # =
+        EQEQ = 206           # ==
+        NOTEQ = 207          # !=
+        LESS = 208           # <
+        LESSEQUAL = 209      # <=
+        GREATER = 210        # >
+        GREATEREQUAL = 211   # >=
+        
+
+
