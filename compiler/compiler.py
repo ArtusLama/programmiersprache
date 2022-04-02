@@ -17,11 +17,13 @@ def compile_file(path: str):
 
             token = lexer.getToken()
             while token.kind != TokenType.EOF:
-                print(token.kind)
+                if token.kind != TokenType.NEWLINE:
+                    print(token.kind)
                 token = lexer.getToken()
 
             # while lexer.peek() != "\0":
             #     lexer.nextChar()
+            
 
 
 

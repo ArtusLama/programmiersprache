@@ -1,15 +1,10 @@
 
 
-
-
 import enum
-from lib2to3.pgen2.token import GREATEREQUAL, LESSEQUAL
-
 
 class Token:
 
     def __init__(self, tokenText, tokenKind):
-
         self.text = tokenText
         self.kind = tokenKind
 
@@ -19,12 +14,26 @@ class TokenType(enum.Enum):
         EOF = -1
         NEWLINE = 0
 
-        NUMBER = 1
-        INDENT = 2
-        STRING = 3
+        INT = 1
+        FLOAT = 2
+        VAR_NAME = 3
+        STRING = 4
+
+        VAR_TYPE_INT = [10, "int"]
+        VAR_TYPE_FLOAT = [11, "float"]
+        VAR_TPYE_STRING = [12, "str"]
+        
+
+
+        BRACKET_OPEN = 51
+        BRACKET_CLOSE = 52
 
         #keywords
-        PRINT = 101
+        PRINT = [101, "print"]
+        IF = [102, "if"]
+        ELIF = [203, "elif"]
+        ELSE = 204
+
 
         #operators
         PLUS = 201

@@ -1,4 +1,5 @@
 
+from keyword import iskeyword
 import sys
 from token import Token, TokenType
 #from compiler.token import TokenType
@@ -66,8 +67,12 @@ class Lexer:
         elif self.curChar == "\0":
             token = Token("", TokenType.EOF)
 
-
-
+        elif self.curChar == "{":
+            token = Token(self.curChar, TokenType.BRACKET_OPEN)
+        elif self.curChar == "}":
+            token = Token(self.curChar, TokenType.BRACKET_CLOSE)
+        
+        
 
 
         elif self.curChar == "=":
@@ -91,6 +96,10 @@ class Lexer:
                 lastChar = self.curChar
                 self.nextChar()
                 token = Token(lastChar + self.curChar, TokenType.LESSEQUAL)
+            elif self.peek() == ">":
+                lastChar = self.curChar
+                self.nextChar()
+                token = Token(lastChar + self.curChar, TokenType.ELSE)
             else:
                 token = Token(self.curChar, TokenType.LESS)
 
@@ -116,10 +125,50 @@ class Lexer:
             tokenText = self.code[startPos : self.curPos]
             token = Token(tokenText, TokenType.STRING)
 
+            
+        elif self.curChar.isdigit():
+            
+            startPos = self.curPos
+            isFloat = False
 
+            self.nextChar()
+            while self.curChar.isdigit() or self.curChar == ".":
+                if self.curChar == ".":
+                    if not isFloat: isFloat = True
+                    else: self.error("Second '.' in number")
+                self.nextChar()
+
+                
+
+            tokenText = self.code[startPos : self.curPos]
+            
+            #token = isFloat if Token(tokenText, TokenType.FLOAT) else Token(tokenText, TokenType.INT)
+            if isFloat:
+                token = Token(tokenText, TokenType.FLOAT)
+            else:
+                token = Token(tokenText, TokenType.INT)
+
+
+        elif self.curChar.isalpha():
+            startPos = self.curPos
+            while self.curChar.isalpha():
+                self.nextChar()
+
+            tokenText = self.code[startPos : self.curPos]
+
+            isKeyword = False
+            for kind in TokenType:
+                if type(kind.value) != int:
+                    if kind.value[1] == tokenText:
+                        token = Token(tokenText, kind)
+                        isKeyword = True
+                        break
+            
+            if not isKeyword:
+                token = Token(tokenText, TokenType.VAR_NAME)
 
         else:
             self.error(f"Unknown token '{self.curChar}'")
-
+        
         self.nextChar()
         return token

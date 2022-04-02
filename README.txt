@@ -17,13 +17,13 @@ str test<int a, int b> {
 FALLUNTERSCHEIDUNG
 
 
-? <test == "hallo"> {
+if <test == "hallo"> {
     test = "hi"
 
-} ? <test == "tschüss"> {
+} <test == "tschüss"> {
     test = "bye"
 
-} ? <> {
+} <> {
     test = "dont know"
 }
 
@@ -55,6 +55,9 @@ str readFile<str file> {
 }
 
 try{
+
+
+
     str content = readFile<"test.txt">
 } catch {
     
@@ -66,3 +69,10 @@ Error handling?
 
 
 # THIS IS A COMMENT
+
+GRAMMAAAAARRRRR
+
+
+print <"Hello World">   (PRINT | LESS | STRING/VARIABLE | GREATER)
+<"Hello"> print
+
