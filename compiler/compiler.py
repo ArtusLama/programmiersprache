@@ -1,5 +1,7 @@
 import sys
 
+from lexer import Lexer
+
 
 
 
@@ -8,7 +10,11 @@ def compile_file(path: str):
     print("start compiling")
     with open(path) as file:
         for line in file:
-            print(line)
+
+            lexer = Lexer(line)
+            #lexer = Lexer("int main<str argv> {")
+            while lexer.peek() != "\0":
+                lexer.nextChar()
 
 
 
