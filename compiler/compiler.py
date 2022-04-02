@@ -22,7 +22,7 @@ def compile_file(path: str):
     parser = Parser(lexer, emitter)
 
     parser.program()
-    emitter.writeFile()
+    #emitter.writeFile()
     print("FINISCH!!!")
             
 

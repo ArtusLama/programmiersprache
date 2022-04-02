@@ -73,8 +73,8 @@ class Parser:
 
     def program(self):
         print("PRGRAM")
-        self.emitter.headerLine("#include <stdio.h>")
-        self.emitter.headerLine("int main(void){")
+        #self.emitter.headerLine("#include <stdio.h>")
+        #self.emitter.headerLine("int main(void){")
 
         while self.checkToken(TokenType.NEWLINE):
             self.nextToken()
@@ -82,8 +82,8 @@ class Parser:
         while not self.checkToken(TokenType.EOF):
             self.statement()
 
-        self.emitter.emitLine("return 0;")
-        self.emitter.emitLine("}")
+        #self.emitter.emitLine("return 0;")
+        #self.emitter.emitLine("}")
             
 
     
